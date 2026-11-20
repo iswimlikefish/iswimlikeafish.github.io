@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Trek: The Next Generation — Quote Generator</title>
+    <style>
+        /* Extremely minimal CSS for clean typography and basic layout */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        figure {
+            margin: 0 0 2rem 0;
+            min-height: 7rem;
+        }
+
+        blockquote {
+            font-size: 1.15rem;
+            margin: 0 0 0.75rem 0;
+        }
+
+        figcaption {
+            font-size: 0.95rem;
+        }
+
+        button {
+            font-family: inherit;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <h1>Star Trek: The Next Generation</h1>
+
+        <figure>
+            <blockquote id="quote-text"></blockquote>
+            <figcaption id="quote-author"></figcaption>
+        </figure>
+
+        <button id="new-quote-btn" type="button">Generate Quote</button>
+    </main>
+
+    <script>
+        // Collection of iconic Star Trek: The Next Generation quotes
+        const tngQuotes = [
+            {
+                text: "It is possible to commit no mistakes and still lose. That is not a weakness. That is life.",
+                author: "Captain Jean-Luc Picard"
+            },
+            {
+                text: "Things are only impossible until they're not.",
+                author: "Captain Jean-Luc Picard"
+            },
+            {
+                text: "There are four lights!",
+                author: "Captain Jean-Luc Picard"
+            },
+            {
+                text: "The first duty of every Starfleet officer is to the truth, whether it's scientific truth or historical truth or personal truth!",
+                author: "Captain Jean-Luc Picard"
+            },
+            {
+                text: "I am fully functional, programmed in multiple techniques.",
+                author: "Lieutenant Commander Data"
+            },
+            {
+                text: "Could you please continue the petty bickering? I find it most intriguing.",
+                author: "Lieutenant Commander Data"
+            },
+            {
+                text: "In the strict sense, I did not. I merely utilized the available data to extrapolate a logical conclusion.",
+                author: "Lieutenant Commander Data"
+            },
+            {
+                text: "A blind man teaching an android how to paint? That's got to be worth a couple of pages in somebody's book.",
+                author: "Commander William T. Riker"
+            },
+            {
+                text: "Fate protects fools, little children, and ships named Enterprise.",
+                author: "Commander William T. Riker"
+            },
+            {
+                text: "Today is a good day to die.",
+                author: "Lieutenant Worf"
+            },
+            {
+                text: "I am NOT a merry man!",
+                author: "Lieutenant Worf"
+            },
+            {
+                text: "A warrior does not let a friend face danger alone.",
+                author: "Lieutenant Worf"
+            },
+            {
+                text: "Sometimes you just have to bow to the absurd.",
+                author: "Lieutenant Commander Geordi La Forge"
+            },
+            {
+                text: "You can't just sit back and wait for things to happen. You have to make them happen.",
+                author: "Lieutenant Commander Geordi La Forge"
+            },
+            {
+                text: "If there's nothing wrong with me, maybe there's something wrong with the universe.",
+                author: "Dr. Beverly Crusher"
+            },
+            {
+                text: "You've got to know when to break the rules, Jean-Luc.",
+                author: "Dr. Beverly Crusher"
+            },
+            {
+                text: "I don't know if I can help you, but I can certainly listen.",
+                author: "Counselor Deanna Troi"
+            },
+            {
+                text: "You can't measure a person's worth by their mistakes alone.",
+                author: "Counselor Deanna Troi"
+            },
+            {
+                text: "The trial never ends, Captain. We never reached a verdict.",
+                author: "Q"
+            },
+            {
+                text: "If you can't take a little bloody nose, maybe you ought to go back home and crawl under your bed. It's not safe out here.",
+                author: "Q"
+            },
+            {
+                text: "Consider that in the history of many worlds there have always been disposable creatures. They do the dirty work. They do the work that no one else wants to do, because it's too difficult or too hazardous.",
+                author: "Guinan"
+            },
+            {
+                text: "If you're going to be a captain, you have to learn to live with the fact that you can't save everyone.",
+                author: "Guinan"
+            }
+        ];
+
+        const quoteTextEl = document.getElementById("quote-text");
+        const quoteAuthorEl = document.getElementById("quote-author");
+        const newQuoteBtn = document.getElementById("new-quote-btn");
+
+        let currentIndex = -1;
+
+        /**
+         * Selects a random quote index guaranteed to be different from the current one,
+         * and updates the DOM.
+         */
+        function displayRandomQuote() {
+            if (tngQuotes.length === 0) return;
+
+            let nextIndex;
+            if (tngQuotes.length === 1) {
+                nextIndex = 0;
+            } else {
+                do {
+                    nextIndex = Math.floor(Math.random() * tngQuotes.length);
+                } while (nextIndex === currentIndex);
+            }
+
+            currentIndex = nextIndex;
+            const selectedQuote = tngQuotes[currentIndex];
+
+            quoteTextEl.textContent = `“${selectedQuote.text}”`;
+            quoteAuthorEl.textContent = `— ${selectedQuote.author}`;
+        }
+
+        // Event listener for button clicks/taps
+        newQuoteBtn.addEventListener("click", displayRandomQuote);
+
+        // Display an initial quote on page load
+        displayRandomQuote();
+    </script>
+
+</body>
+</html>
